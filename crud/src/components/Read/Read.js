@@ -8,7 +8,7 @@ const Read = () => {
   const [users, setUsers] = useContext(UserContext);
   const { id } = useParams();
 
-  const user = users.filter((user) => user.id == parseInt(id));
+  const user = users.filter((user) => user.id === parseInt(id));
 
   return (
     <>

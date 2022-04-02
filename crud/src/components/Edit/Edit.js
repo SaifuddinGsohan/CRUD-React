@@ -8,7 +8,7 @@ const Edit = () => {
   const [users, setUsers] = useContext(UserContext);
   const { id } = useParams();
 
-  const user = users.filter((user) => user.id == parseInt(id));
+  const user = users.filter((user) => user.id === parseInt(id));
 
   const [name, setName] = useState(user[0].name);
   const [position, setPosition] = useState(user[0].position);
