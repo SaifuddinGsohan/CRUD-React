@@ -5,28 +5,28 @@ import { useState } from 'react';
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState([
+    const [users, setUsers] = useState([
         {
             id: 1,
             name: 'John Doe',
             position: 'CEO',
-            Salary: 100000
+            salary: 100000
         },
         {
             id: 2,
             name: 'Shuvo',
             position: 'EEE',
-            Salary: 70000
+            salary: 70000
         },
         {
             id: 3,
             name: 'Mahadi',
             position: 'CSE',
-            Salary: 90000
+            salary: 90000
         },
     ]);
     return (
-        <UserContext.Provider value={[user, setUser]}>
+        <UserContext.Provider value={[users, setUsers]}>
             {children}
         </UserContext.Provider>
     )
