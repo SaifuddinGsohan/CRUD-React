@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { UserContext } from "../UserContext/UserContect";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Create = () => {
   const [users, setUsers] = useContext(UserContext);
@@ -13,6 +14,12 @@ const Create = () => {
 
   const createUser = () => {
     setUsers([...users, { id: parseInt(id), name: name, position: position, salary: parseInt(salary) }]);
+    axios.post("http://localhost:3003/insert", {
+      id: parseInt(id),
+      name: name,
+      position: position,
+      salary: parseInt(salary)
+    });
   };
 
   return (
