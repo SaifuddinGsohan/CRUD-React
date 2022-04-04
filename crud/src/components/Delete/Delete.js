@@ -3,24 +3,29 @@ import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../UserContext/UserContect";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Delete = () => {
   const [users, setUsers] = useContext(UserContext);
   const { id } = useParams();
 
-  const deteteUser = (id) => {
+  const deteteUser = () => {
     const newUsers = users.filter((user) => user.id !== parseInt(id));
     setUsers(newUsers);
-    }
+
+    const user = users.filter((user) => user.id === parseInt(id));
+
+    axios
+      .delete("http://localhost:3003/delete/" + user[0]._id)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
-      <button
-        className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-        type="button"
-      >
-        Open regular modal
-      </button>
       {setUsers ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -49,15 +54,15 @@ const Delete = () => {
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <Link to="/">
                     <button
-                      className="text-[#fff] transition ease-in-out delay-150 bg-[#0000dd88] hover:-translate-y-1 hover:scale-110 hover:bg-[#00008888] duration-300 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      className="text-[#fff] transition ease-in-out delay-150 bg-[#0000dd88] hover:-translate-y-1 hover:scale-110 hover:bg-[#00008888] duration-300 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-3 mb-1 ease-linear transition-all duration-150"
                       type="button"
                     >
                       Close
                     </button>
                     <button
-                      className="text-[#fff] transition ease-in-out delay-150 bg-[#dd000088] hover:-translate-y-1 hover:scale-110 hover:bg-[#88000088] duration-300 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      className="text-[#fff] transition ease-in-out delay-150 bg-[#dd000088] hover:-translate-y-1 hover:scale-110 hover:bg-[#88000088] duration-300 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-3 mb-1 ease-linear transition-all duration-150"
                       type="button"
-                      onClick={() => deteteUser(id)}
+                      onClick={() => deteteUser()}
                     >
                       Delete
                     </button>

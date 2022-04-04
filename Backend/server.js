@@ -20,7 +20,8 @@ dotenv.config({path: 'config.env'});
 // Mongoose DB Config
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Routes
+// --Routes-- //
+//insert
 app.post("/insert", (req, res) => {
   const { id, name, position, salary } = req.body;
   const user = new User({
@@ -38,6 +39,53 @@ app.post("/insert", (req, res) => {
   }
 });
 
+//read
+app.get("/read", (req, res) => {
+  User.find({}, (err, users) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.send(users);
+    }
+  });
+});
+
+//update
+app.put("/update", (req, res) => {
+  const { _id, id, name, position, salary} = req.body;
+  try {
+    User.findById(_id, (err, updatedUser) => {
+      updatedUser.id = parseInt(id);
+      updatedUser.name = name;
+      updatedUser.position = position;
+      updatedUser.salary = parseInt(salary);
+      updatedUser.save();
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//delete
+app.delete("/delete/:_id", (req, res) => {
+  const { _id } = req.params;
+  try {
+    User.findByIdAndDelete(_id, (err, deletedUser) => {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        res.send(deletedUser);
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// --Routes end-- //
+
 // Server
 const port = process.env.PORT || 8080;
-app.listen(port, () => {console.log(`Server started on http://localhost:${port}`)});
+app.listen(port, () => {console.log(`Server started on http://localhost:${port}`);});
