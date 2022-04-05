@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext/UserContect";
 
 const Home = () => {
-  const [users, setUsers] = useContext(UserContext);
+  const [users] = useContext(UserContext);
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">

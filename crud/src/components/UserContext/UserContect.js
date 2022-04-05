@@ -2,6 +2,7 @@ import React from 'react';
 import { createContext } from 'react';
 import { useState } from 'react';
 
+
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -27,11 +28,11 @@ export const UserProvider = ({ children }) => {
     ]);
 
     React.useEffect(()=>{
-        fetch('http://localhost:3003/read')
-        .then(res => res.json())
-        .then(data => {
+        fetch(process.env.REACT_APP_SERVER_URL + "read")
+          .then((res) => res.json())
+          .then((data) => {
             setUsers(data);
-        })
+          });
     },[])
 
     return (

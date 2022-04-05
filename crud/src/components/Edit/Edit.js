@@ -17,14 +17,13 @@ const Edit = () => {
 
   const editUser = () => {
     // setUsers(users);
-    axios
-      .put("http://localhost:3003/update", {
-        _id: user[0]._id,
-        id: user[0].id,
-        name: name,
-        position: position,
-        salary: salary,
-      });
+    axios.put(process.env.REACT_APP_SERVER_URL + "update", {
+      _id: user[0]._id,
+      id: user[0].id,
+      name: name,
+      position: position,
+      salary: salary,
+    });
   };
 
   return (

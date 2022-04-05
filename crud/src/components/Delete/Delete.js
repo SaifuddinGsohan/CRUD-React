@@ -5,7 +5,9 @@ import { UserContext } from "../UserContext/UserContect";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+
 const Delete = () => {
+
   const [users, setUsers] = useContext(UserContext);
   const { id } = useParams();
 
@@ -16,7 +18,7 @@ const Delete = () => {
     const user = users.filter((user) => user.id === parseInt(id));
 
     axios
-      .delete("http://localhost:3003/delete/" + user[0]._id)
+      .delete(process.env.REACT_APP_SERVER_URL + "delete/" + user[0]._id)
       .then((res) => {
         console.log(res);
         console.log(res.data);

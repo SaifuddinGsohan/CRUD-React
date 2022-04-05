@@ -13,12 +13,20 @@ const Create = () => {
   const [salary, setSalary] = useState("");
 
   const createUser = () => {
-    setUsers([...users, { id: parseInt(id), name: name, position: position, salary: parseInt(salary) }]);
-    axios.post("http://localhost:3003/insert", {
+    setUsers([
+      ...users,
+      {
+        id: parseInt(id),
+        name: name,
+        position: position,
+        salary: parseInt(salary),
+      },
+    ]);
+    axios.post(process.env.REACT_APP_SERVER_URL + "insert", {
       id: parseInt(id),
       name: name,
       position: position,
-      salary: parseInt(salary)
+      salary: parseInt(salary),
     });
   };
 
@@ -45,9 +53,7 @@ const Create = () => {
               <form className="w-full max-w-lg">
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="w-full md:full px-3">
-                    <label
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    >
+                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                       ID
                     </label>
                     <input
@@ -59,9 +65,7 @@ const Create = () => {
                     />
                   </div>
                   <div className="w-full md:full px-3">
-                    <label
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    >
+                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                       Name
                     </label>
                     <input
@@ -73,9 +77,7 @@ const Create = () => {
                     />
                   </div>
                   <div className="w-full md:full px-3">
-                    <label
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    >
+                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                       Position
                     </label>
                     <input
@@ -87,9 +89,7 @@ const Create = () => {
                     />
                   </div>
                   <div className="w-full md:full px-3">
-                    <label
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    >
+                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                       Salary
                     </label>
                     <input
