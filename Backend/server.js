@@ -87,6 +87,6 @@ app.delete("/delete/:_id", (req, res) => {
 // --Routes end-- //
 
 // Server
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log("Server started on " + process.env.URL);
 });
