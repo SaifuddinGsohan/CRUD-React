@@ -20,6 +20,7 @@ const Home = () => {
           <table className="text-center table-auto bg-[#ffffff55] border-slate-500 border-2 m-4 ">
             <thead>
               <tr className=" bg-slate-500 border-slate-300 border-2">
+                <th> # </th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Position</th>
@@ -30,6 +31,7 @@ const Home = () => {
             <tbody>
               {users.map((user) => (
                 <tr key={user.id} className="border-slate-300 border-2">
+                  <td></td>
                   <td>{user.id}</td>
                   <td>{user.name}</td>
                   <td>{user.position}</td>
